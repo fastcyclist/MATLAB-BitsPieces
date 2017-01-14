@@ -1,4 +1,4 @@
- function [Header, Number] = ExcelRead(PathName, FileName)
+function [Header, Number] = ExcelRead(PathName, FileName)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %       "xlsread" is commonly used to import Excel files in MATLAB. When
 %   a data file has non-numeric columns either at the beginning or at the 
@@ -12,16 +12,16 @@
 [NUM,TXT,RAW]=xlsread([PathName, FileName]);
 
 
-NRow_NUM = size(NUM,1);
-NRow_RAW = size(RAW,1);
+NRow_NUM = size(NUM,1);        % Count the number of rows in the NUM part
+NRow_RAW = size(RAW,1);        % Count the number of rows in the RAW part
 
-Header      = RAW(1:(NRow_RAW-NRow_NUM),:);
-Number_Temp = RAW((NRow_RAW-NRow_NUM)+1:end,:);
+Header      = RAW(1:(NRow_RAW-NRow_NUM),:);       % Header includes top rows that are not part of NUM
+Number_Temp = RAW((NRow_RAW-NRow_NUM)+1:end,:);   % Save the bottom part (NUM rows) in a temp place
 
-Number      = zeros(size(Number_Temp));
+Number      = zeros(size(Number_Temp));           % Initialize the Number array
 for i=1:size(Number_Temp,1)
     for j=1:size(Number_Temp,2)
-        if isnumeric(Number_Temp{i,j})
+        if isnumeric(Number_Temp{i,j})            % If the element is numeric, copy it to Numbers
             Number(i,j) = Number_Temp{i,j};
         end
     end
