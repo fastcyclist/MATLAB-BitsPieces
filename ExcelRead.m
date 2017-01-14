@@ -11,19 +11,18 @@
 %% Read in the file as usual, using xlsread.
 [NUM,TXT,RAW]=xlsread([PathName, FileName]);
 
-if size(NUM,2) ~= size(TXT,2)   % if the numbers array and the header have different numbers of columns...
-    NRow_NUM = size(NUM,1);
-    NRow_RAW = size(RAW,1);
-    
-    Header      = RAW(1:(NRow_RAW-NRow_NUM),:);
-    Number_Temp = RAW((NRow_RAW-NRow_NUM)+1:end,:);
-    
-    Number      = zeros(size(Number_Temp));
-    for i=1:size(Number_Temp,1)
-        for j=1:size(Number_Temp,2)
-            if isnumeric(Number_Temp{i,j})
-                Number(i,j) = Number_Temp{i,j};
-            end
+
+NRow_NUM = size(NUM,1);
+NRow_RAW = size(RAW,1);
+
+Header      = RAW(1:(NRow_RAW-NRow_NUM),:);
+Number_Temp = RAW((NRow_RAW-NRow_NUM)+1:end,:);
+
+Number      = zeros(size(Number_Temp));
+for i=1:size(Number_Temp,1)
+    for j=1:size(Number_Temp,2)
+        if isnumeric(Number_Temp{i,j})
+            Number(i,j) = Number_Temp{i,j};
         end
     end
 end
