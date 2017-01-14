@@ -1,4 +1,4 @@
-function [Header, Number] = ExcelRead(PathName, FileName)
+ function [Header, Number] = ExcelRead(PathName, FileName)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %       "xlsread" is commonly used to import Excel files in MATLAB. When
 %   a data file has non-numeric columns either at the beginning or at the 
